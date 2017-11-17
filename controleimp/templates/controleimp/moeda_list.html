@@ -1,0 +1,9 @@
+{% extends 'controleimp/base.html' %}
+{% block content %}
+    {% for moeda in moedas %}
+
+        <p>Código: {{ moeda.codigo }}</p>
+        <p>Descrição: {{ moeda.descricao }}</p>
+
+    {% endfor %}
+{% endblock %}
