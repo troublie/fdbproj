@@ -2,23 +2,37 @@ from django.db import models
 from django.utils import timezone
 from decimal import Decimal
 
+
 class TermoPagto(models.Model):
-    termo = models.IntegerField
+    termo = models.IntegerField(default=0)
+
+    def salvar(self):
+        self.salvar()
+
+    def __str__(self):
+        return str(self.termo)
+
 
 class Moeda(models.Model):
     codigo = models.CharField(max_length=3)
     descricao = models.CharField(max_length=30)
 
+    def salvar(self):
+        self.salvar()
+
+    def __str__(self):
+        return self.descricao
+
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=100)
-    contato = models.CharField(max_length=100)
+    contato = models.EmailField(default="example@example.com")
 
-    def save(self):
-        self.save()
+    def salvar(self):
+        self.salvar()
 
     def __str__(self):
-        return self.title
+        return self.nome
 
 
 class Pedido(models.Model):
@@ -28,12 +42,12 @@ class Pedido(models.Model):
     data = models.DateTimeField
     moeda = models.ForeignKey(Moeda, on_delete=models.CASCADE)
     valor = models.DecimalField(max_digits=8, decimal_places=2,
-               default=Decimal(0.00))
+                                default=Decimal(0.00))
     termo = models.ForeignKey(TermoPagto, on_delete=models.CASCADE)
 
-    def save(self):
+    def salvar(self):
         self.data = timezone.now()
-        self.save()
+        self.salvar()
 
     def __str__(self):
-        return self.title
+        return self.numero

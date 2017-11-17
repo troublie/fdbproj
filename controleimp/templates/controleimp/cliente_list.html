@@ -3,14 +3,14 @@
 {% block content %}
     <table class="tabela">
         <tr>
-            <th>Código</th>
-            <th>Descrição</th>
+            <th>Nome</th>
+            <th>Contato</th>
         </tr>
 
-        {% for moeda in moedas %}
+        {% for cliente in clientes %}
             <tr>
-                <td>{{ moeda.codigo }}</td>
-                <td>{{ moeda.descricao }}</td>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.contato }}</td>
             </tr>
         {% endfor %}
     </table>

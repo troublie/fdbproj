@@ -1,8 +1,8 @@
 {% extends 'controleimp/base.html' %}
 {% block content %}
 
-    <h4><a href="">Cliente</a></h4>
+    <h4><a href="{%  url "cliente_list" %}">Cliente</a></h4>
     <h4><a href="{% url "moeda_list" %}">Moeda</a></h4>
-    <h4><a href="">Termo</a></h4>
+    <h4><a href="{% url "termo_list" %}">Termo</a></h4>
 
 {% endblock %}

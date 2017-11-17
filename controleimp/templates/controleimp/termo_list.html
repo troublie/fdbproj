@@ -1,0 +1,17 @@
+{% extends 'controleimp/base.html' %}
+
+{% block content %}
+    <a href="{% url 'termo_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    <br>
+    <table class="tabela">
+        <tr>
+            <th>Dias</th>
+        </tr>
+
+        {% for termo in termos %}
+            <tr>
+                <td>{{ termo.termo}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
