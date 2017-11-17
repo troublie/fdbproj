@@ -12,7 +12,7 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 3.6.3 virtualenv at C:\Users\Juliano\ProjetosDjango\fdbproj\myenv" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6.3 virtualenv at C:\Users\juliano.lopes\fdbenv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="mysite" />
   </component>
@@ -20,7 +20,7 @@
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/../fdb\templates" />
+        <option value="$USER_HOME$/fdb\templates" />
       </list>
     </option>
   </component>
