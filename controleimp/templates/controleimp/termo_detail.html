@@ -11,6 +11,7 @@
 
             <tr>
                 <a class="btn btn-default" href="{% url 'termo_edit' pk=termo.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="btn btn-default" href="{% url 'termo_remove' pk=termo.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
                 <td>{{ termo.termo}}</td>
             </tr>
 

@@ -45,7 +45,7 @@ def termo_new(request):
         return redirect("termo_detail", pk=termo.pk)
     else:
         form = TermoPagtoForm()
-    return render(request, 'controleimp/termo_edit.html', {'form': form})
+    return render(request, 'controleimp/termo_new.html', {'form': form})
 
 
 def termo_edit(request, pk):
@@ -60,3 +60,9 @@ def termo_edit(request, pk):
     else:
         form = TermoPagtoForm(instance=termo)
     return render(request, 'controleimp/termo_edit.html', {'form': form})
+
+
+def termo_remove(request, pk):
+    termo = get_object_or_404(TermoPagto, pk=pk)
+    termo.delete()
+    return redirect('termo_list')
