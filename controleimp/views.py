@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Moeda, TermoPagto, Cliente
+from .models import Moeda, TermoPagto, Cliente, Pedido
 from .forms import TermoPagtoForm
 
 
@@ -28,6 +28,10 @@ def termo_list(request):
 def cliente_list(request):
     clientes = Cliente.objects.all().order_by("nome")
     return render(request, "controleimp/cliente_list.html", {"clientes": clientes})
+
+def pedidos_list(request):
+    pedido = Pedido.objects.all().order_by("data")
+    return render(request, "controleimp/pedidos_list.html", {"pedidos": pedido})
 
 
 def termo_detail(request, pk):

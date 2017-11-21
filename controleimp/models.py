@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from decimal import Decimal
+from datetime import datetime
 
 
 class TermoPagto(models.Model):
@@ -21,7 +22,7 @@ class Moeda(models.Model):
         self.salvar()
 
     def __str__(self):
-        return self.descricao
+        return self.codigo
 
 
 class Cliente(models.Model):
@@ -39,7 +40,7 @@ class Pedido(models.Model):
     author = models.ForeignKey('auth.User')
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     numero = models.CharField(max_length=20)
-    data = models.DateTimeField
+    data = models.DateTimeField(default=datetime.now)
     moeda = models.ForeignKey(Moeda, on_delete=models.CASCADE)
     valor = models.DecimalField(max_digits=8, decimal_places=2,
                                 default=Decimal(0.00))
