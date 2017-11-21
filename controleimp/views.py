@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.utils import timezone
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Moeda, TermoPagto, Cliente
 from .forms import TermoPagtoForm
 
@@ -31,13 +30,33 @@ def cliente_list(request):
     return render(request, "controleimp/cliente_list.html", {"clientes": clientes})
 
 
+def termo_detail(request, pk):
+    termo = get_object_or_404(TermoPagto, pk=pk)
+    return render(request, 'controleimp/termo_detail.html', {'termo': termo})
+
+
 def termo_new(request):
+    form = TermoPagtoForm()
     if request.method == "POST":
         form = TermoPagtoForm(request.POST)
     if form.is_valid():
         termo = form.save(commit=False)
         termo.save()
-        return redirect('termo_list')
+        return redirect("termo_detail", pk=termo.pk)
     else:
         form = TermoPagtoForm()
+    return render(request, 'controleimp/termo_edit.html', {'form': form})
+
+
+def termo_edit(request, pk):
+    termo = get_object_or_404(TermoPagto, pk=pk)
+    form = TermoPagtoForm()
+    if request.method == "POST":
+        form = TermoPagtoForm(request.POST, instance=termo)
+    if form.is_valid():
+        termo = form.save(commit=False)
+        termo.save()
+        return redirect('termo_detail', pk=termo.pk)
+    else:
+        form = TermoPagtoForm(instance=termo)
     return render(request, 'controleimp/termo_edit.html', {'form': form})

@@ -1,9 +1,9 @@
 {% extends 'controleimp/base.html' %}
 
 {% block content %}
-    <h4>Adicionar termo de pagamento</h4>
+    <h4>Editar termo de pagamento</h4>
     <form method="POST" class="add-form">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Adicionar</button>
+        <button type="submit" class="save btn btn-default">Atualizar</button>
     </form>
 {% endblock %}

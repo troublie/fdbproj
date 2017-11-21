@@ -4,7 +4,7 @@ from decimal import Decimal
 
 
 class TermoPagto(models.Model):
-    termo = models.IntegerField(default=0)
+    termo = models.IntegerField(blank=False)
 
     def salvar(self):
         self.salvar()

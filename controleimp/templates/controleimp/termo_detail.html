@@ -8,10 +8,11 @@
             <th>Dias</th>
         </tr>
 
-        {% for termo in termos %}
+
             <tr>
-                <td><a href="{%  url "termo_detail" pk=termo.pk %}">{{ termo.termo}}</a></td>
+                <a class="btn btn-default" href="{% url 'termo_edit' pk=termo.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <td>{{ termo.termo}}</td>
             </tr>
-        {% endfor %}
+
     </table>
 {% endblock %}
