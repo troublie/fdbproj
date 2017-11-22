@@ -31,6 +31,7 @@ def cliente_list(request):
 
 def pedidos_list(request):
     pedido = Pedido.objects.all().order_by("data")
+
     return render(request, "controleimp/pedidos_list.html", {"pedidos": pedido})
 
 
