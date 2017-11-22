@@ -1,0 +1,9 @@
+{% extends 'controleimp/base.html' %}
+
+{% block content %}
+    <h4>Atualizar PO</h4>
+    <form method="POST" class="add-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Atualizar</button>
+    </form>
+{% endblock %}

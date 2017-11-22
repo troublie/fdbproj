@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Moeda, TermoPagto, Cliente, Pedido
-from .forms import TermoPagtoForm
+from .forms import TermoPagtoForm, PedidoForm
 
 
 def index(request):
@@ -29,10 +29,49 @@ def cliente_list(request):
     clientes = Cliente.objects.all().order_by("nome")
     return render(request, "controleimp/cliente_list.html", {"clientes": clientes})
 
+
 def pedidos_list(request):
     pedido = Pedido.objects.all().order_by("data")
-
     return render(request, "controleimp/pedidos_list.html", {"pedidos": pedido})
+
+
+def pedidos_new(request):
+    form = PedidoForm()
+    if request.method == "POST":
+        form = PedidoForm(request.POST)
+    if form.is_valid():
+        pedido = form.save(commit=False)
+        pedido.author = request.user
+        pedido.save()
+        return redirect("pedidos_list")
+    else:
+        form = PedidoForm()
+    return render(request, 'controleimp/pedido_new.html', {'form': form})
+
+
+def pedidos_detail(request, pk):
+    pedido = get_object_or_404(Pedido, pk=pk)
+    return render(request, 'controleimp/pedidos_detail.html', {'pedido': pedido})
+
+
+def pedidos_edit(request, pk):
+    pedido = get_object_or_404(Pedido, pk=pk)
+    form = PedidoForm()
+    if request.method == "POST":
+        form = PedidoForm(request.POST, instance=pedido)
+    if form.is_valid():
+        pedido = form.save(commit=False)
+        pedido.save()
+        return redirect('pedidos_detail', pk=pedido.pk)
+    else:
+        form = PedidoForm(instance=pedido)
+    return render(request, 'controleimp/pedidos_edit.html', {'form': form})
+
+
+def pedidos_remove(request, pk):
+    pedido = get_object_or_404(Pedido, pk=pk)
+    pedido.delete()
+    return redirect('pedidos_list')
 
 
 def termo_detail(request, pk):

@@ -2,6 +2,7 @@
 
 {% block content %}
     <a href="{% url 'pedidos_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    <br>
     <table class="tabela">
         <tr>
             <th>Responsável</th>
@@ -12,17 +13,16 @@
             <th>Valor total</th>
             <th>Termo</th>
         </tr>
-
-        {% for pedido in pedidos %}
             <tr>
+                <a class="btn btn-default" href="{% url 'pedidos_edit' pk=pedido.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a class="btn btn-default" href="{% url 'pedidos_remove' pk=pedido.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
                 <td>{{ pedido.author }}</td>
                 <td>{{ pedido.cliente }}</td>
-                <td><a href="{% url "pedidos_detail" pk=pedido.pk %}">{{ pedido.numero }}</a></td>
-                <td>{{ pedido.data|date:"d/m/y" }}</td>
+                <td>{{ pedido.numero }}</td>
+                <td>{{ pedido.data|date:"d/m/y"  }}</td>
                 <td>{{ pedido.moeda }}</td>
                 <td>{{ pedido.valor }}</td>
                 <td>{{ pedido.termo }}</td>
             </tr>
-        {% endfor %}
     </table>
 {% endblock %}

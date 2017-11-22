@@ -41,7 +41,7 @@ class Pedido(models.Model):
     author = models.ForeignKey('auth.User')
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     numero = models.CharField(max_length=20)
-    data = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    data = models.DateTimeField(blank=True, null=True, default=timezone.now, editable=False)
     moeda = models.ForeignKey(Moeda, on_delete=models.CASCADE)
     valor = models.DecimalField(max_digits=8, decimal_places=2,
                                 default=Decimal(0.00))

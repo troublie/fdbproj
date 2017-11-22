@@ -11,6 +11,10 @@ urlpatterns = [
     url(r'^cadastros/termo/edit/(?P<pk>\d+)/$', views.termo_edit, name="termo_edit"),
     url(r'^cadastros/termo/remove/(?P<pk>\d+)/$', views.termo_remove, name="termo_remove"),
     url(r'^cadastros/', views.cadastros, name="cadastros"),
+    url(r'^pedidos/remove/(?P<pk>\d+)/$', views.pedidos_remove, name="pedidos_remove"),
+    url(r'^pedidos/edit/(?P<pk>\d+)/$', views.pedidos_edit, name="pedidos_edit"),
+    url(r'^pedidos/detail/(?P<pk>\d+)/$', views.pedidos_detail, name="pedidos_detail"),
+    url(r'^pedidos/new', views.pedidos_new, name="pedidos_new"),
     url(r'^pedidos/list', views.pedidos_list, name="pedidos_list"),
     url(r'^pedidos/', views.pedidos, name="pedidos"),
 ]
