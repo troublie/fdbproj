@@ -53,6 +53,3 @@ class Pedido(models.Model):
 
     def __str__(self):
         return self.numero
-
-    def formatDate(self):
-        date_format(self.data, format='SHORT_DATE_FORMAT', use_l10n=True)
