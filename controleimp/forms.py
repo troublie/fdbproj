@@ -13,3 +13,7 @@ class PedidoForm(forms.ModelForm):
     class Meta:
         model = Pedido
         fields = "cliente", "numero", "moeda", "valor", "termo",
+
+class DateRangeForm(forms.Form):
+    start = forms.DateInput
+    end = forms.DateInput

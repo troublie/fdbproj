@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Moeda, TermoPagto, Cliente, Pedido
-from .forms import TermoPagtoForm, PedidoForm
+from .forms import TermoPagtoForm, PedidoForm, DateRangeForm
 
 
 def index(request):
@@ -31,8 +31,9 @@ def cliente_list(request):
 
 
 def pedidos_list(request):
+    form = DateRangeForm()
     pedido = Pedido.objects.all().order_by("data")
-    return render(request, "controleimp/pedidos_list.html", {"pedidos": pedido})
+    return render(request, "controleimp/pedidos_list.html", {"pedidos": pedido}, {"form": form})
 
 
 def pedidos_new(request):
@@ -110,3 +111,16 @@ def termo_remove(request, pk):
     termo = get_object_or_404(TermoPagto, pk=pk)
     termo.delete()
     return redirect('termo_list')
+
+def pedidosByDateRange(request):
+    if request.method == "POST":
+        form = DateRangeForm(request.POST)
+        if form.is_valid():
+            start = form.cleaned_data.get("start")
+            end = form.cleaned_data.get("end")
+            pedidos = Pedido.objects.filter(date__range=[start, end])
+            bPedidos = True
+            request.bpedidos = bPedidos
+            return render(request, "controleimp/pedidos_list.html", {"pedidos": pedidos})
+        else:
+            return redirect("pedidos_list")
